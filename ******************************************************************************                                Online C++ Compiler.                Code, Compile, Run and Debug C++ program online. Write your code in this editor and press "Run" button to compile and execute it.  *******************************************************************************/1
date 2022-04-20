@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int main() {
+int dp[10000][10000];
+int m[10000][10000];
+int a,b,tmp1,tmp2;
+cin>>a>>b;
+for(int i=0;i<a;i++){
+for (int j=0;j<b;j++){
+cin>>m[i][j];
+if(i==0 && j==0){
+tmp1=m[i][j];
+tmp2=m[i][j];
+dp[i][j]=m[i][j];
+}             
+else if(i==0 && j!=0){
+tmp1+=m[i][j];
+dp[i][j]=tmp1;
+}        
+else if(i!=0 && j==0){
+tmp2+=m[i][j];
+dp[i][j]=tmp2;
+}
+}
+}
+for(int i=1;i<a;i++){
+for(int j=1;j<b;j++){
+dp[i][j]=min(m[i-1][j]+m[i][j],m[i][j-1]+m[i][j]);
+}
+}
+for(int i=0;i<a;i++){
+for(int j=0;j<b;j++){
+cout<<dp[i][j]<<"\t";
+}
+cout<<endl;
+}
+return 0; 
+}
